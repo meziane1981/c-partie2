@@ -9,6 +9,7 @@ body {
     margin: 0;
     color: white;
     min-height: 200vh;
+    overflow-x: hidden;
 }
 
 .box {
@@ -37,4 +38,16 @@ p {
     visibility: visible;
     opacity: 1;
     transform: translatex(0);
+}
+
+.mousemove {
+    /* background: purple; */
+    height: 50px;
+    width: 50px;
+    border: 2px solid pink;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    border-radius: 50px;
+    transition: 0.2s ease;
+    z-index: -1;
 }
