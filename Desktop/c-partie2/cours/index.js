@@ -76,5 +76,45 @@ document.addEventListener("keypress", (e) => {
     } else {
         keypressContainer.style.background = "red";
     }
-    ring(e.key)
+    if (e.key === 'z')
+        ring(e.key)
+});
+//   scroll Event
+const nav = document.querySelector("nav");
+
+window.addEventListener('scroll', () => {
+        console.log(window.scrolly);
+
+        if (window.scrollY > 120) {
+            nav.style.top = 0;
+        } else {
+            nav.style.top = "-50px"
+        }
+    })
+    //..............................................
+    // form event
+const inputName = document.querySelector('input[type="text"]');
+const select = document.querySelector("select");
+const form = document.querySelector("form");
+let Pseudo = "";
+let Language = "";
+
+
+inputName.addEventListener("input", (e) => {
+    pseudo = e.target.value;
+})
+select.addEventListener("input", (e) => {
+    language = e.target.value;
+});
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (cgv.checked) {
+        document.querySelector("form > div").innerHTML = `
+        <h3>Pseudo : ${pseudo}</h3> 
+        <h4>Language préféré : ${Language}</h4>
+        `;
+    } else {
+        alert('Veuillez accepter les CGV');
+    }
 });
