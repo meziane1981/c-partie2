@@ -134,3 +134,57 @@ boxes.forEach((box) => {
         e.target.style.transform = "scale(0.7)";
     });
 });
+//....................................
+// //addEvetListener vs onclick
+// // document.body.onclick = function() {
+// //     console.log("Scroll!")
+// };
+// document.body.onscroll = () => {
+//     console.log("Scroll !");
+// }
+//bubbling => fin(de base l'enventistener est paramétré en mode BUBBING)
+document.body.addEventListener("click", () => {
+    console.log("click 1 !");
+}, false);
+//Usecapture
+document.body.addEventListener("click", () => {
+    console.log("click 2 !");
+}, true);
+
+
+///....................................
+// STOP PROPAGATION 
+// questionContainer.addEventListener("click", () => {
+//     alert("Test !")
+//     e.stopPropagation();
+// });
+
+//removeEvenListener 
+//........................................................
+// bom
+// console.log(window.innerHeight);
+// console.log(window.scrollY);
+// window.open("http://google.com", "cours js", "height=600, width=800");
+// window.close
+
+
+//Evenement adossés a window
+// window.alert("Hello")
+
+//confirme
+btn2.addEventListener("click", () => {
+    confirm("Voulez vous vraimment vous tromper ?");
+});
+
+//prompt
+
+btn1.addEventListener("click", () => {
+    let answer = prompt("Entrez votre nom !");
+    questionContainer.innerHTML += "<h3> Bravo " + answer + "</h3>"
+});
+
+
+// Timer compte a rebours 
+setTimeout(() => {
+    questionContainer.style.borderRadius = "300px";
+}, 2000)
