@@ -1,45 +1,45 @@
 //obs PROPRIETE DS LE CSS <DIV ECRITURE DE STYLE DS LA BALISE SUPRIEURE A TOUS >  >#id > .classe>baiseHTML
+// SELECTEURS
+// document.querySelector("h4").style.background = "yellow";
+// const baliseHTML = document.querySelector("h4");
 
-//selecteurs
-// document.querySelector('h4').style.background = "yellow";
-// const balishtml = document.querySelector('h4');
-// console.log('balishtml');
-
-// balishtml.style.background = "yellow";
-// questionContainer.style.borderRadius = "150px";
-// click event
-const questionContainer = document.querySelector('.click-event');
-const btn1 = document.querySelector('#btn-1')
-const btn2 = document.getElementById('btn-2')
-const response = document.querySelector('p');
+// Click event
+const questionContainer = document.querySelector(".click-event");
+const btn1 = document.querySelector("#btn-1");
+const btn2 = document.getElementById("btn-2");
+const response = document.querySelector("p");
 
 questionContainer.addEventListener("click", () => {
     questionContainer.classList.toggle("question-clicked");
 });
 
 btn1.addEventListener("click", () => {
-    response.classList.add('show-response'); //ajouté un classe
-    response.style.background = "green" //ajoute un style
-});
-btn2.addEventListener("click", () => {
-    response.classList.add('show-response');
-    response.style.background = "red"
+    response.classList.add("show-response");
+    response.style.background = "green";
 });
 
-//............................................
-//Mouse Events
+btn2.addEventListener("click", () => {
+    response.classList.add("show-response");
+    response.style.background = "red";
+});
+
+/* <div> > #id > .class > baliseHTML */
+
+//--------------------------------------------------
+// Mouse Events
 const mousemove = document.querySelector(".mousemove");
+
 window.addEventListener("mousemove", (e) => {
     mousemove.style.left = e.pageX + "px";
     mousemove.style.top = e.pageY + "px";
-})
+});
 
 window.addEventListener("mousedown", () => {
-    mousemove.style.transform = "scale(2) translate(-25%, -25% )";
+    mousemove.style.transform = "scale(2) translate(-25%, -25%)";
 });
 
 window.addEventListener("mouseup", () => {
-    mousemove.style.transform = "scale(1) translate(-50%, -50% )";
+    mousemove.style.transform = "scale(1) translate(-50%, -50%)";
     mousemove.style.border = "2px solid teal";
 });
 
@@ -52,11 +52,13 @@ questionContainer.addEventListener("mouseout", () => {
 });
 
 response.addEventListener("mouseover", () => {
-        response.style.transform = "rotate(2deg)";
-    })
-    //.................................................
-    //key Press event
-const keypressContainer = document.querySelector('.keypress');
+    response.style.transform = "rotate(2deg)";
+});
+
+//---------------------------------------------------
+// KeyPress event
+
+const keypressContainer = document.querySelector(".keypress");
 const key = document.getElementById("key");
 
 const ring = (key) => {
@@ -64,7 +66,6 @@ const ring = (key) => {
     audio.src = key + ".mp3";
     audio.play();
 };
-
 
 document.addEventListener("keypress", (e) => {
     key.textContent = e.key;
@@ -76,115 +77,185 @@ document.addEventListener("keypress", (e) => {
     } else {
         keypressContainer.style.background = "red";
     }
-    if (e.key === 'z')
-        ring(e.key)
+    if (e.key === "z") ring(e.key);
 });
-//   scroll Event
+
+//-------------------------------------------------
+// Scroll Event
+
 const nav = document.querySelector("nav");
 
-window.addEventListener('scroll', () => {
-        console.log(window.scrolly);
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 120) {
+        nav.style.top = 0;
+    } else {
+        nav.style.top = "-50px";
+    }
+});
 
-        if (window.scrollY > 120) {
-            nav.style.top = 0;
-        } else {
-            nav.style.top = "-50px"
-        }
-    })
-    //..............................................
-    // form event
+//--------------------------------------------------
+// Form Events
 const inputName = document.querySelector('input[type="text"]');
 const select = document.querySelector("select");
 const form = document.querySelector("form");
-let Pseudo = "";
-let Language = "";
-
+let pseudo = "";
+let language = "";
 
 inputName.addEventListener("input", (e) => {
     pseudo = e.target.value;
-})
+});
+
 select.addEventListener("input", (e) => {
     language = e.target.value;
 });
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
+
     if (cgv.checked) {
         document.querySelector("form > div").innerHTML = `
-        <h3>Pseudo : ${pseudo}</h3> 
-        <h4>Language préféré : ${Language}</h4>
-        `;
+      <h3>Pseudo : ${pseudo}</h3>
+      <h4>Langage préféré : ${language}</h4>
+    `;
     } else {
-        alert('Veuillez accepter les CGV');
+        alert("Veuillez accepter les CGV");
     }
 });
-//----------------------------
-// load event
-window.addEventListener("load", () => (
-    console.log("document chargé !")
-));
 
-//......................................................
-// Foreach
+//------------------------------------------------
+// Load event
+window.addEventListener("load", () => {
+    // console.log("Document Chargé !");
+});
+
+//------------------------------------------------
+// ForEach
 // const boxes = document.getElementsByClassName("box");
 const boxes = document.querySelectorAll(".box");
-console.log(boxes);
+
 boxes.forEach((box) => {
     box.addEventListener("click", (e) => {
-        e.target.style.transform = "scale(0.7)";
+        box.style.transform = "scale(0.7)";
     });
 });
-//....................................
-// //addEvetListener vs onclick
-// // document.body.onclick = function() {
-// //     console.log("Scroll!")
+
+//------------------------------------------------
+// addEventListener Vs onclick
+// document.body.onclick = function() {
+//   console.log("Scroll !");
 // };
-// document.body.onscroll = () => {
-//     console.log("Scroll !");
-// }
-//bubbling => fin(de base l'enventistener est paramétré en mode BUBBING)
+
+// Bubbling => fin (de base l'eventlistener est paramétré en mode Bublbing)
 document.body.addEventListener("click", () => {
     console.log("click 1 !");
-}, false);
-//Usecapture
-document.body.addEventListener("click", () => {
-    console.log("click 2 !");
-}, true);
+});
 
+// Usecapture
+document.body.addEventListener(
+    "click",
+    () => {
+        console.log("click 2 !");
+    },
+    true
+);
 
-///....................................
-// STOP PROPAGATION 
-// questionContainer.addEventListener("click", () => {
-//     alert("Test !")
-//     e.stopPropagation();
+// https://gomakethings.com/what-is-that-third-argument-on-the-vanilla-js-addeventlistener-method-and-when-do-you-need-it/
+
+//-------------------------------------------------
+// Stop propagation
+// questionContainer.addEventListener("click", (e) => {
+//   alert("Test !");
+//   e.stopPropagation();
 // });
 
-//removeEvenListener 
-//........................................................
-// bom
+// removeEventListener
+
+//-------------------------------------------------
+// BOM
+
 // console.log(window.innerHeight);
 // console.log(window.scrollY);
 // window.open("http://google.com", "cours js", "height=600, width=800");
-// window.close
+// window.close()
 
+// Evénements adossés à Window
+// alert("hello");
 
-//Evenement adossés a window
-// window.alert("Hello")
-
-//confirme
+// confirm
 btn2.addEventListener("click", () => {
-    confirm("Voulez vous vraimment vous tromper ?");
+    confirm("Voulez vous vraiment vous tromper ?");
 });
 
-//prompt
-
+// prompt
 btn1.addEventListener("click", () => {
     let answer = prompt("Entrez votre nom !");
-    questionContainer.innerHTML += "<h3> Bravo " + answer + "</h3>"
+
+    questionContainer.innerHTML += "<h3>Bravo " + answer + "</h3>";
 });
 
-
-// Timer compte a rebours 
+// Timer, compte à rebours
 setTimeout(() => {
     questionContainer.style.borderRadius = "300px";
-}, 2000)
+}, 2000);
+
+// let interval = setInterval(() => {
+//   document.body.innerHTML += `
+//       <div class='box'>
+//         <h2>Nouvelle Boite !</h2>
+//       </div>
+//     `;
+// }, 4000);
+
+document.body.addEventListener("click", (e) => {
+    e.target.remove();
+    clearInterval(interval);
+});
+
+// Location
+// console.log(location.href);
+// console.log(location.host);
+// console.log(location.pathname);
+// console.log(location.search);
+// location.replace("http://lequipe.fr");
+
+// window.onload = () => {
+//   location.href = "http://twitter.fr";
+// };
+
+// Navigator
+// console.log(navigator.userAgent);
+
+// https://developer.mozilla.org/fr/docs/Web/API/Geolocation/getCurrentPosition
+
+// var options = {
+//   enableHighAccuracy: true,
+//   timeout: 5000,
+//   maximumAge: 0,
+// };
+
+// function success(pos) {
+//   var crd = pos.coords;
+
+//   console.log("Votre position actuelle est :");
+//   console.log(`Latitude : ${crd.latitude}`);
+//   console.log(`Longitude : ${crd.longitude}`);
+//   console.log(`La précision est de ${crd.accuracy} mètres.`);
+// }
+
+// function error(err) {
+//   console.warn(`ERREUR (${err.code}): ${err.message}`);
+// }
+
+// navigator.geolocation.getCurrentPosition(success, error, options);
+
+// History
+// console.log(history);
+// window.history.back();
+// history.go(-2)
+
+//------------------------------------------------
+// SetProperty
+window.addEventListener("mousemove", (e) => {
+    nav.style.setProperty("--x", e.layerX + "px");
+    nav.style.setProperty("--y", e.layerY + "px");
+});
